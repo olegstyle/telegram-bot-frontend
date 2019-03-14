@@ -5,7 +5,7 @@
 
 Very similar!
 
-0. `npm install`
-0. `npm run dev`
-0. `http://localhost:3000/`
-0. Enjoy!
+1. `npm install`
+1. `npm run dev`
+1. `http://localhost:3000/`
+1. Enjoy!
