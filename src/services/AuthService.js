@@ -1,8 +1,9 @@
 import Router from "next/router";
+import { getAuthToken } from '../api/token';
 
 export default class {
     static isAuthorized() {
-        return false;
+        return !!getAuthToken();
     }
 
     static initialShouldAuthorized(res) {

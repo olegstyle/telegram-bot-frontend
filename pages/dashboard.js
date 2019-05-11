@@ -1,15 +1,28 @@
 import React from "react";
 import DashboardLayout from '../components/layouts/dashboard';
-import AuthService from "../services/AuthService";
+import AuthService from "../src/services/AuthService";
+import { connect } from 'react-redux';
+import actions from '../redux/actions/auth';
 
-export default class extends React.Component {
+class Dashboard extends React.Component {
     static async getInitialProps({ res }) {
         AuthService.initialShouldAuthorized(res);
+    }
 
-        return {};
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.logout();
     }
 
     render() {
-        return <DashboardLayout title={'Title'}>Dashboard...</DashboardLayout>
+        return <DashboardLayout title={'Dashboard'}>
+            Dashboard...
+            <div><button onClick={this.handleLogout.bind(this)}>Logout</button></div>
+        </DashboardLayout>
     }
 }
+
+export default connect(
+    state => state,
+    actions
+)(Dashboard);
