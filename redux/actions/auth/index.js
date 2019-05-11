@@ -25,7 +25,7 @@ export default {
 
     register({ name, email, password }, onFulfilled, onRejected) {
         return (dispatch) => {
-            api.auth.login({ name, email, password })
+            api.auth.register({ name, email, password })
                 .then((response) => {
                     receivedToken(dispatch, response.data.token);
                     typeof onFulfilled === 'function' ? onFulfilled(response) : {};

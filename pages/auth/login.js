@@ -18,10 +18,10 @@ class Login extends React.Component {
         AuthService.initialShouldNotAuthorized(res);
     }
 
-        handleSubmit(e) {
-            e.preventDefault();
-            this.props.login({ email: this.state.email, password: this.state.password });
-        }
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.login({ email: this.state.email, password: this.state.password });
+    }
 
     render() {
         return <AuthLayout title="Sign in">

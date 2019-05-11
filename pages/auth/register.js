@@ -6,9 +6,24 @@ import AuthLayout from '../../components/layouts/auth';
 import AuthService from '../../src/services/AuthService';
 
 class Register extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+
+        };
+    }
+
     static async getInitialProps({res}) {
         AuthService.initialShouldNotAuthorized(res);
         return {};
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.register({ name: this.state.name, email: this.state.email, password: this.state.password });
     }
 
     render() {
@@ -18,29 +33,44 @@ class Register extends React.Component {
                     <div className="signup-content">
                         <div className="signup-form">
                             <h2 className="form-title">Sign up</h2>
-                            <form method="POST" className="register-form" id="register-form">
+                            <form method="POST" className="register-form" id="register-form" onSubmit={this.handleSubmit.bind(this)}>
                                 <div className="form-group">
                                     <label htmlFor="name"><i className="zmdi zmdi-account material-icons-name"/></label>
-                                    <input type="text" name="name" id="name" placeholder="Your Name"/>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        placeholder="Your Name"
+                                        onChange={e => this.setState({ name: e.target.value })}
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email"><i className="zmdi zmdi-email"/></label>
-                                    <input type="email" name="email" id="email" placeholder="Your Email"/>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Your Email"
+                                        onChange={e => this.setState({ email: e.target.value })} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="pass"><i className="zmdi zmdi-lock"/></label>
-                                    <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                    <input
+                                        type="password"
+                                        name="pass"
+                                        id="pass"
+                                        placeholder="Password"
+                                        onChange={e => this.setState({ password: e.target.value })}
+                                    />
                                 </div>
+                                <div className="form-group">  </div>
                                 <div className="form-group">
-                                    <label htmlFor="re-pass"><i className="zmdi zmdi-lock-outline"/></label>
-                                    <input type="password" name="re_pass" id="re_pass"
-                                           placeholder="Repeat your password"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="checkbox" name="agree-term" id="agree-term" className="agree-term"/>
-                                    <label htmlFor="agree-term" className="label-agree-term"><span><span/></span>I
-                                        agree all statements in <a href="#" className="term-service">Terms of
-                                            service</a></label>
+                                    <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
+                                    <label htmlFor="agree-term" className="label-agree-term">
+                                        <span><span/></span>
+                                        I agree all statements in &nbsp;
+                                        <a href="#" className="term-service">Terms of service</a>
+                                    </label>
                                 </div>
                                 <div className="form-group form-button">
                                     <input type="submit" name="signup" id="signup" className="form-submit"
