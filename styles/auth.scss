@@ -1,5 +1,14 @@
 @import "global";
 
-body {
-  background-color: blueviolet;
-}
+//Common
+@import 'auth/common/extend.scss';
+@import 'auth/common/fonts.scss';
+@import 'auth/common/minxi.scss';
+@import 'auth/common/variables.scss';
+@import 'auth/common/global.scss';
+
+//layout
+@import 'auth/layouts/main.scss';
+
+// Responsive
+@import 'auth/layouts/responsive.scss';
