@@ -1,6 +1,6 @@
 import React from 'react'
 import LoadingLayout from '../components/layouts/loading';
-import AuthService from '../services/AuthService';
+import AuthService from '../src/services/AuthService';
 
 export default class extends React.Component {
     static async getInitialProps({res}) {

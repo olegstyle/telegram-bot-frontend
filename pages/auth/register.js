@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import actions from '../../redux/actions/auth';
 import AuthLayout from '../../components/layouts/auth';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../src/services/AuthService';
 
-export default class extends React.Component {
+class Register extends React.Component {
     static async getInitialProps({res}) {
         AuthService.initialShouldNotAuthorized(res);
         return {};
@@ -58,3 +60,8 @@ export default class extends React.Component {
         </AuthLayout>
     }
 }
+
+export default connect(
+    state => state,
+    actions
+)(Register);
