@@ -13,6 +13,6 @@ export function resetAuthToken() {
     delete axios.defaults.headers.common['Authorization'];
 }
 
-export function getAuthToken() {
-    return getCookie(tokenKey);
+export function getAuthToken(context) {
+    return getCookie(tokenKey, context);
 }

@@ -12,13 +12,11 @@ class Register extends React.Component {
             name: '',
             email: '',
             password: '',
-
         };
     }
 
-    static async getInitialProps({res}) {
-        AuthService.initialShouldNotAuthorized(res);
-        return {};
+    static async getInitialProps(context) {
+        AuthService.initialShouldNotAuthorized(context);
     }
 
     handleSubmit(e) {

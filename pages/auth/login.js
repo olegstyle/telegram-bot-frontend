@@ -14,8 +14,8 @@ class Login extends React.Component {
         };
     }
 
-    static async getInitialProps({ res }) {
-        AuthService.initialShouldNotAuthorized(res);
+    static async getInitialProps(context) {
+        AuthService.initialShouldNotAuthorized(context);
     }
 
     handleSubmit(e) {

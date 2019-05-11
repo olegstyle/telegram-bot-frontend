@@ -2,12 +2,12 @@ import React from 'react'
 import LoadingLayout from '../components/layouts/loading';
 import AuthService from '../src/services/AuthService';
 
+// noinspection JSUnusedGlobalSymbols
 export default class extends React.Component {
-    static async getInitialProps({res}) {
-        AuthService.initialShouldAuthorized(res);
-        AuthService.initialShouldNotAuthorized(res);
-
-        return {};
+    // noinspection JSUnusedGlobalSymbols
+    static async getInitialProps(context) {
+        AuthService.initialShouldAuthorized(context);
+        AuthService.initialShouldNotAuthorized(context);
     }
 
     render() {

@@ -2,31 +2,31 @@ import Router from "next/router";
 import { getAuthToken } from '../api/token';
 
 export default class {
-    static isAuthorized() {
-        return !!getAuthToken();
+    static isAuthorized(context) {
+        return !!getAuthToken(context);
     }
 
-    static initialShouldAuthorized(res) {
-        if (this.isAuthorized()) {
+    static initialShouldAuthorized(context) {
+        if (this.isAuthorized(context)) {
             return;
         }
 
-        if (res) {
-            res.writeHead(302, {Location: '/auth/login'});
-            res.end();
+        if (context.res) {
+            context.res.writeHead(302, {Location: '/auth/login'});
+            context.res.end();
         } else {
             Router.push('/auth/login');
         }
     }
 
-    static initialShouldNotAuthorized(res) {
-        if (! this.isAuthorized()) {
+    static initialShouldNotAuthorized(context) {
+        if (!this.isAuthorized(context)) {
             return;
         }
 
-        if (res) {
-            res.writeHead(302, {Location: '/dashboard'});
-            res.end();
+        if (context.res) {
+            context.res.writeHead(302, {Location: '/dashboard'});
+            context.res.end();
         } else {
             Router.push('/dashboard');
         }

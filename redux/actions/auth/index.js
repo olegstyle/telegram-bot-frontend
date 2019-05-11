@@ -14,7 +14,7 @@ export default {
         return (dispatch) => {
             api.auth.login({ email, password })
                 .then((response) => {
-                    receivedToken(dispatch, response.data.token);
+                    receivedToken(dispatch, response.data.data.accessToken);
                     typeof onFulfilled === 'function' ? onFulfilled(response) : {};
                 })
                 .catch((err) => {
