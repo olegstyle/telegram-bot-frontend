@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "adminator": "git+https://github.com/olegstyle/Adminator-admin-dashboard.git",
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-plugin-wrap-in-js": "^1.1.1",
@@ -22,6 +23,7 @@
     "next": "^8.0.3",
     "next-redux-wrapper": "^2.0.0",
     "node-sass": "^4.12.0",
+    "popper.js": "^1.15.0",
     "raw-loader": "^1.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

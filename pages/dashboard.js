@@ -5,19 +5,13 @@ import { connect } from 'react-redux';
 import actions from '../redux/actions/auth';
 
 class Dashboard extends React.Component {
-    static async getInitialProps({ res }) {
-        AuthService.initialShouldAuthorized(res);
-    }
-
-    handleLogout(e) {
-        e.preventDefault();
-        this.props.logout();
+    static async getInitialProps(context) {
+        AuthService.initialShouldAuthorized(context);
     }
 
     render() {
-        return <DashboardLayout title={'Dashboard'}>
+        return <DashboardLayout title="Dashboard">
             Dashboard...
-            <div><button onClick={this.handleLogout.bind(this)}>Logout</button></div>
         </DashboardLayout>
     }
 }

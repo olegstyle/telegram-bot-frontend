@@ -45,7 +45,10 @@ class Login extends React.Component {
                                         name="your_name"
                                         id="your_name"
                                         placeholder="Your Name"
-                                        onChange={e => this.setState({ email: e.target.value })} />
+                                        value={this.state.email}
+                                        onChange={e => this.setState({ email: e.target.value })}
+                                        required
+                                        autoFocus />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="your_pass"><i className="zmdi zmdi-lock"/></label>
@@ -54,7 +57,9 @@ class Login extends React.Component {
                                         name="your_pass"
                                         id="your_pass"
                                         placeholder="Password"
-                                        onChange={e => this.setState({ password: e.target.value })} />
+                                        value={this.state.password}
+                                        onChange={e => this.setState({ password: e.target.value })}
+                                        required />
                                 </div>
                                 <div className="form-group form-button">
                                     <input
