@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default (props) => (
     <div>
@@ -33,56 +34,68 @@ export default (props) => (
 
                     <ul className="sidebar-menu scrollable pos-r">
                         <li className="nav-item mT-30 active">
-                            <a className="sidebar-link" href="/dashboard">
-                                <span className="icon-holder">
-                                  <i className="c-blue-500 fa fa-home"/>
-                                </span>
-                                <span className="title">Home</span>
-                            </a>
+                            <Link href="/dashboard">
+                                <a className="sidebar-link" href="/dashboard">
+                                    <span className="icon-holder">
+                                      <i className="c-blue-500 fa fa-home"/>
+                                    </span>
+                                    <span className="title">Home</span>
+                                </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="sidebar-link" href="#">
-                                <span className="icon-holder">
-                                  <i className="c-gray-500 fa fa-video-camera"/>
-                                </span>
-                                <span className="title">Bots</span>
-                            </a>
+                            <Link href="/bots">
+                                <a className="sidebar-link" href="#">
+                                    <span className="icon-holder">
+                                      <i className="c-gray-500 fas fa-robot"/>
+                                    </span>
+                                    <span className="title">Bots</span>
+                                </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="sidebar-link" href="#">
-                                <span className="icon-holder">
-                                  <i className="c-gray-500 fa fa-info"/>
-                                </span>
-                                <span className="title">Messages</span>
-                            </a>
+                            <Link href="/messages">
+                                <a className="sidebar-link" href="/messages">
+                                    <span className="icon-holder">
+                                      <i className="c-gray-500 fas fa-newspaper"/>
+                                    </span>
+                                    <span className="title">Messages</span>
+                                </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="sidebar-link" href="#">
-                                <span className="icon-holder">
-                                  <i className="c-gray-500 fa fa-info"/>
-                                </span>
-                                <span className="title">Scheduler</span>
-                            </a>
+                            <Link href="/scheduler">
+                                <a className="sidebar-link" href="/scheduler">
+                                    <span className="icon-holder">
+                                      <i className="c-gray-500 fas fa-clock"/>
+                                    </span>
+                                    <span className="title">Scheduler</span>
+                                </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="sidebar-link" href="#">
-                                <span className="icon-holder">
-                                  <i className="c-gray-500 fa fa-question"/>
-                                </span>
-                                <span className="title">FAQ</span>
-                            </a>
+                            <Link href="/faq">
+                                <a className="sidebar-link" href="/faq">
+                                    <span className="icon-holder">
+                                      <i className="c-gray-500 fa fa-question"/>
+                                    </span>
+                                    <span className="title">FAQ</span>
+                                </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             &nbsp;
                         </li>
 
                         <li className="nav-item">
-                            <a className="sidebar-link" href="#">
-                                <span className="icon-holder">
-                                  <i className="c-gray-500 fa fa-user"/>
-                                </span>
-                                <span className="title">My profile</span>
-                            </a>
+                            <Link href="/user/profile">
+                                <a className="sidebar-link" href="/user/profile">
+                                    <span className="icon-holder">
+                                      <i className="c-gray-500 fa fa-user"/>
+                                    </span>
+                                    <span className="title">My profile</span>
+                                </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

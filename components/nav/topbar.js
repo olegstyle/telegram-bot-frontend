@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import actions from '../../redux/actions/auth';
+import Link from "next/link";
 
 class Topbar extends React.Component {
     handleLogout(e) {
@@ -30,10 +31,12 @@ class Topbar extends React.Component {
                         </a>
                         <ul className="dropdown-menu fsz-sm">
                             <li>
-                                <a href="#" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                                    <i className="fa fa-user mR-10"/>
-                                    <span>My profile</span>
-                                </a>
+                                <Link href="/user/profile">
+                                    <a href="/user/profile" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                        <i className="fa fa-user mR-10"/>
+                                        <span>My profile</span>
+                                    </a>
+                                </Link>
                             </li>
                             <li role="separator" className="divider"/>
                             <li>
