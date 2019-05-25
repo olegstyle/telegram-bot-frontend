@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import actions from '../../redux/actions/auth';
 import AuthLayout from '../../components/layouts/auth';
 import AuthService from '../../src/services/AuthService';
+import {handleResponseErrorForComponent} from "../../src/utils/errorsHandler";
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             name: '',
             email: '',
             password: '',
+            fails: {},
         };
     }
 
@@ -21,7 +24,22 @@ class Register extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.register({ name: this.state.name, email: this.state.email, password: this.state.password });
+        if (this.state.loading) {
+            return;
+        }
+        this.state.fails = {};
+        const self = this;
+        self.setState({loading: true});
+        this.props.register(
+            { name: this.state.name, email: this.state.email, password: this.state.password },
+            () => {
+                self.setState({loading: false});
+            },
+            (err) => {
+                self.setState({loading: false});
+                handleResponseErrorForComponent(err, self);
+            }
+        );
     }
 
     render() {

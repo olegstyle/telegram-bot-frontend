@@ -58,11 +58,12 @@ figure {
     padding-left: 34px;
 }
 .register-form {
+    position: relative;
     width: 100%;
 }
 .form-group {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     overflow: hidden;
     &:last-child {
         margin-bottom: 0px;
@@ -136,8 +137,8 @@ input[type=checkbox]:not(old):checked + label > span:before{
 
 label {
     position: absolute;
-    left: 0;
-    top: 50%;
+    left: 10px;
+    top: 20px;
     @include transform(translateY(-50%));
     color: $black-color;
 }
@@ -252,4 +253,14 @@ label.valid {
     margin-left: 110px;
     margin-right: 20px;
     margin-top: 10px;
+}
+
+.form-error {
+    label {
+        color: $red;
+    }
+    input {
+        border-bottom: 1px solid $red;
+        background-color: $red-light;
+    }
 }
