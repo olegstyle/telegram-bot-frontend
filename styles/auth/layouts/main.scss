@@ -257,10 +257,17 @@ label.valid {
 
 .form-error {
     label {
-        color: $red;
+        color: $red !important;
+        a {
+            color: $red !important;
+        }
     }
     input {
-        border-bottom: 1px solid $red;
-        background-color: $red-light;
+        border-bottom: 1px solid $red !important;
+        background: $red-light !important;
+
+        &[type=checkbox]:not(old) + label > span {
+            border: 1px solid $red !important;
+        }
     }
 }
