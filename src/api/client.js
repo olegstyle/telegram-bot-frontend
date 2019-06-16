@@ -16,7 +16,6 @@ axios.interceptors.response.use(
         // Unauthorized
         if (error.response.status === 401) {
             resetAuthToken();
-            // TODO go to login page.
         }
 
         return Promise.reject(error);
