@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import actions from '../../redux/actions/auth';
-import Link from "next/link";
+import actions from '../../redux/actions';
 
 class Topbar extends React.Component {
     handleLogout(e) {
@@ -10,6 +9,14 @@ class Topbar extends React.Component {
     }
 
     render(props) {
+        const { getCurrentUser, users } = this.props;
+        let userName = '...';
+        if (!users.current) {
+            getCurrentUser();
+        } else {
+            userName = `${users.current.name} (${users.current.email})`
+        }
+
         return <div className="header navbar">
             <div className="header-container">
                 <ul className="nav-left">
@@ -26,19 +33,17 @@ class Topbar extends React.Component {
                                 <img className="w-2r bdrs-50p" src="/static/images/no-photo.svg" alt=""/>
                             </div>
                             <div className="peer">
-                                <span className="fsz-sm c-grey-900">UserName</span> {/*TODO set user name*/}
+                                <span className="fsz-sm c-grey-900">{ userName }</span>
                             </div>
                         </a>
                         <ul className="dropdown-menu fsz-sm">
-                            <li>
-                                <Link href="/user/profile">
-                                    <a href="/user/profile" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                                        <i className="fa fa-user mR-10"/>
-                                        <span>My profile</span>
-                                    </a>
-                                </Link>
+                            {/*<li>
+                                <a href="#" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                    <i className="fa fa-user mR-10"/>
+                                    <span>My profile</span>
+                                </a>
                             </li>
-                            <li role="separator" className="divider"/>
+                            <li role="separator" className="divider"/>*/}
                             <li>
                                 <a href="#"
                                    className="d-b td-n pY-5 bgcH-grey-100 c-grey-700"

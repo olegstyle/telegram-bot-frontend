@@ -5,7 +5,7 @@ const tokenKey = 'auth-token';
 
 export function setAuthToken(token) {
     setCookie(tokenKey, token);
-    axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
 export function resetAuthToken() {

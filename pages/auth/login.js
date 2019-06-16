@@ -26,7 +26,7 @@ class Login extends React.Component {
         if (this.state.loading) {
             return;
         }
-        this.state.fails = {};
+        this.setState({fails: {}});
         const self = this;
         self.setState({loading: true});
         this.props.login(
