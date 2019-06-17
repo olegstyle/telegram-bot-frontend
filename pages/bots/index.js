@@ -1,8 +1,8 @@
 import React from "react";
-import DashboardLayout from '../components/layouts/dashboard';
-import AuthService from "../src/services/AuthService";
+import DashboardLayout from '../../components/layouts/dashboard';
+import AuthService from "../../src/services/AuthService";
 import { connect } from 'react-redux';
-import actions from '../redux/actions/auth';
+import actions from '../../redux/actions/auth';
 
 class BotsPage extends React.Component {
     static async getInitialProps(context) {

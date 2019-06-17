@@ -64,12 +64,12 @@ export default (props) => (
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/scheduler">
-                                <a className="sidebar-link" href="/scheduler">
+                            <Link href="/schedules">
+                                <a className="sidebar-link" href="/schedules">
                                     <span className="icon-holder">
                                       <i className="c-gray-500 fas fa-clock"/>
                                     </span>
-                                    <span className="title">Scheduler</span>
+                                    <span className="title">Schedules</span>
                                 </a>
                             </Link>
                         </li>
