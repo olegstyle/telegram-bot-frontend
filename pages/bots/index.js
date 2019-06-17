@@ -81,10 +81,12 @@ class BotsPage extends React.Component {
                     <td>{bot.label}</td>
                     <td>{chats}</td>
                     <td>
-                        <button className="btn btn-sm btn-success m-1" data-id={bot.id}>Add chat</button>
-                        <button className="btn btn-sm btn-danger m-1"
-                                data-id={bot.id}
-                                onClick={this.deleteBot.bind(this, bot)}>
+                        <Link href={{ pathname: '/bots/chats/create', query: { botId: bot.id }}}>
+                            <button className="btn btn-sm btn-success m-1">
+                                Add chat
+                            </button>
+                        </Link>
+                        <button className="btn btn-sm btn-danger m-1" onClick={this.deleteBot.bind(this, bot)}>
                             Delete
                         </button>
                     </td>
@@ -102,7 +104,7 @@ class BotsPage extends React.Component {
         return <DashboardLayout title="Bots">
             <div className="d-flex flex-row align-items-center mb-3">
                 <h5 className="mb-0 mr-3">Bots</h5>
-                <Link href="/bots/create" >
+                <Link href="/bots/create">
                     <a href="/bots/create" className="btn btn-sm btn-success">Add new bot</a>
                 </Link>
             </div>
