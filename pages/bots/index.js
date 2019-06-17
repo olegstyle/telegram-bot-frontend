@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import actions from '../../redux/actions/auth';
 import { Table, Badge } from 'reactstrap';
 import api from '../../src/api';
+import { confirmAlert } from 'react-confirm-alert'; // Import
 
 class BotsPage extends React.Component {
     static async getInitialProps(context) {
@@ -35,6 +36,31 @@ class BotsPage extends React.Component {
         });
     }
 
+    deleteBot(bot, e) {
+        console.log(bot, e);
+        const self = this;
+        confirmAlert({
+            title: 'Confirm delete.',
+            message: `Are you sure that you want to delete bot with name ${bot.label}?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        api.bots.delete(bot.id).then(value => {
+                            self.loadBots();
+                        }).catch(reason => {
+                            console.error(reason);
+                            self.loadBots();
+                        });
+                    }
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
+    }
+
     componentDidMount() {
         this.loadBots();
     }
@@ -55,8 +81,12 @@ class BotsPage extends React.Component {
                     <td>{bot.label}</td>
                     <td>{chats}</td>
                     <td>
-                        <button className="btn btn-sm btn-warning m-1" data-id={bot.id}>Edit</button>
                         <button className="btn btn-sm btn-success m-1" data-id={bot.id}>Add chat</button>
+                        <button className="btn btn-sm btn-danger m-1"
+                                data-id={bot.id}
+                                onClick={this.deleteBot.bind(this, bot)}>
+                            Delete
+                        </button>
                     </td>
                 </tr>
             );
@@ -64,7 +94,7 @@ class BotsPage extends React.Component {
         if (botsRows.length === 0) {
             botsRows.push(
                 <tr key="1">
-                    <td colSpan="2">Loading...</td>
+                    <td colSpan="3">Nothing to show...</td>
                 </tr>
             );
         }
