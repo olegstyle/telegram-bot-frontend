@@ -6,4 +6,5 @@ export default {
     one: (id) => axios.get('posts/' + id),
     delete: (id) => axios.delete('posts/' + id),
     edit: (id, data) => axios.post('posts/' + id, data),
+    immediately: (postId, botId) => axios.post(`posts/${postId}/immediately/${botId}`, data),
 };

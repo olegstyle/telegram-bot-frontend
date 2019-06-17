@@ -79,6 +79,10 @@ class PostsPage extends React.Component {
                         <button className="btn btn-sm btn-danger m-1" onClick={this.deletePost.bind(this, post)}>
                             Delete
                         </button>
+                        <br />
+                        <button className="btn btn-sm btn-info m-1">
+                            Send immediately
+                        </button>
                     </td>
                 </tr>
             );

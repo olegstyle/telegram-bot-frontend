@@ -118,7 +118,7 @@ class BotChatCreate extends React.Component {
                             {this.state.fails.chat}
                         </div>
                         <FormText className="text-muted">
-                            A chat id from telegram
+                            A chat id from telegram. Warning: Bot should be added to chat members and should has read/write permissions.
                         </FormText>
                     </FormGroup>
                     <button className="btn btn-success" type="submit">Add</button>
