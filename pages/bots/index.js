@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import actions from '../../redux/actions/auth';
 import { Table, Badge } from 'reactstrap';
 import api from '../../src/api';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { confirmAlert } from 'react-confirm-alert';
 
 class BotsPage extends React.Component {
     static async getInitialProps(context) {
