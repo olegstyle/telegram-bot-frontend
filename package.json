@@ -29,6 +29,7 @@
     "react-confirm-alert": "^2.4.1",
     "react-dom": "^16.8.4",
     "react-redux": "^7.0.3",
+    "react-toastify": "^5.3.1",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",

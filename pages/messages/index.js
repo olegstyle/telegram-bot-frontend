@@ -4,9 +4,10 @@ import DashboardLayout from '../../components/layouts/dashboard';
 import AuthService from "../../src/services/AuthService";
 import { connect } from 'react-redux';
 import actions from '../../redux/actions/auth';
-import { Table, Badge } from 'reactstrap';
+import { Table, Form, Input } from 'reactstrap';
 import api from '../../src/api';
 import { confirmAlert } from 'react-confirm-alert';
+import { toast } from 'react-toastify';
 
 class PostsPage extends React.Component {
     static async getInitialProps(context) {
@@ -17,7 +18,9 @@ class PostsPage extends React.Component {
         super(props);
         this.state = {
             posts: null,
+            botChats: null,
             loading: false,
+            loadingBotChats: false,
         };
     }
 
@@ -36,6 +39,21 @@ class PostsPage extends React.Component {
         });
     }
 
+    loadBotChats() {
+        if (this.state.loadingBotChats) {
+            return;
+        }
+
+        this.setState({loadingBotChats: true});
+        const self = this;
+        api.bots.chats.list().then(response => {
+            self.setState({botChats: response.data.data, loadingBotChats: false});
+        }).catch(reason => {
+            console.error(reason);
+            self.setState({loadingBotChats: false});
+        });
+    }
+
     deletePost(post, e) {
         const self = this;
         confirmAlert({
@@ -47,7 +65,9 @@ class PostsPage extends React.Component {
                     onClick: () => {
                         api.posts.delete(post.id).then(value => {
                             self.loadPosts();
+                            toast('🦄 Successfully Deleted!');
                         }).catch(reason => {
+                            toast.warn('🦄 Delete failed!');
                             console.error(reason);
                             self.loadPosts();
                         });
@@ -60,8 +80,53 @@ class PostsPage extends React.Component {
         });
     }
 
+    sendImmediately(post, e) {
+        const self = this;
+        if (!self.state.botChats || !self.state.botChats.length) {
+            return;
+        }
+        const botChats = [];
+        for (const botChat of self.state.botChats) {
+            botChats.push(
+                <option key={botChat.id} value={botChat.id}>#{botChat.id} {botChat.bot.label} &rarr; {botChat.label}</option>
+            );
+        }
+        confirmAlert({
+            title: 'Confirm immediately send.',
+            message: `Select a bot for send the post with name ${post.title}.`,
+            customUI: (({onClose}) => {
+                return <div className="react-confirm-alert-body"><h3>Confirm immediately send.</h3>
+                    Select a bot for send the post with name Post #1.
+                    <Form onSubmit={(e) => {
+                        e.preventDefault();
+                        api.posts.immediately(
+                            post.id,
+                            e.target.getElementsByTagName('select')[0].value
+                        ).then(value => {
+                            toast('🦄 Successfully sent!');
+                        }).catch(reason => {
+                            toast.warn('🦄 Send failed!');
+                            console.error(reason);
+                        });
+                        onClose();
+                    }}>
+                        <Input type="select" name="chat_Id">
+                            {botChats}
+                        </Input>
+
+                        <div className="react-confirm-alert-button-group">
+                            <button type="submit">Send</button>
+                            <button type="button" onClick={onClose}>Cancel</button>
+                        </div>
+                    </Form>
+                </div>
+            }),
+        });
+    }
+
     componentDidMount() {
         this.loadPosts();
+        this.loadBotChats();
     }
 
     render() {
@@ -80,7 +145,8 @@ class PostsPage extends React.Component {
                             Delete
                         </button>
                         <br />
-                        <button className="btn btn-sm btn-info m-1">
+                        <button className={'btn btn-sm btn-info m-1' + (!this.state.botChats || !this.state.botChats.length ? ' d-none' : '')}
+                                onClick={this.sendImmediately.bind(this, post)}>
                             Send immediately
                         </button>
                     </td>

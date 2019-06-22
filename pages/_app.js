@@ -5,6 +5,8 @@ import {initStore} from '../redux';
 import React from "react";
 import Styles from "../styles/loading.scss";
 import Head from "next/head";
+import {ToastContainer} from "react-toastify";
+import ReactToastifyStyles from 'react-toastify/dist/ReactToastify.css';
 
 export default withRedux(initStore, {debug: true})(
     class MyApp extends App {
@@ -45,6 +47,7 @@ export default withRedux(initStore, {debug: true})(
                     <Head>
                         <title>---</title>
                         <style dangerouslySetInnerHTML={{__html: Styles}}/>
+                        <style dangerouslySetInnerHTML={{__html: ReactToastifyStyles}}/>
                         <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
                                 integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
                                 crossOrigin="anonymous" />
@@ -57,6 +60,17 @@ export default withRedux(initStore, {debug: true})(
                     </div>
                     <Provider store={store}>
                         <Component {...pageProps} />
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={2500}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnVisibilityChange
+                            draggable
+                            pauseOnHover
+                        />
                     </Provider>
                 </Container>
             );
