@@ -22,6 +22,6 @@ module.exports = {
                 loader: 'babel-loader!raw-loader!sass-loader'
             }
         );
-        return config
+        return config;
     }
 };
