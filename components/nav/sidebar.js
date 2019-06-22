@@ -83,7 +83,7 @@ export default (props) => (
                                 </a>
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             &nbsp;
                         </li>
 
@@ -96,7 +96,7 @@ export default (props) => (
                                     <span className="title">My profile</span>
                                 </a>
                             </Link>
-                        </li>
+                        </li>*/}
                     </ul>
                 </div>
             </div>
