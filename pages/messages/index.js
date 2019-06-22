@@ -136,7 +136,7 @@ class PostsPage extends React.Component {
                 <tr key={post.id}>
                     <td>{post.title}</td>
                     <td>
-                        <Link href={{ pathname: '/post/edit', query: { postId: post.id }}}>
+                        <Link href={{ pathname: '/messages/edit', query: { postId: post.id }}}>
                             <button className="btn btn-sm btn-success m-1">
                                 Edit
                             </button>
@@ -164,8 +164,8 @@ class PostsPage extends React.Component {
         return <DashboardLayout title="Posts">
             <div className="d-flex flex-row align-items-center mb-3">
                 <h5 className="mb-0 mr-3">Posts</h5>
-                <Link href="/posts/edit">
-                    <a href="/posts/edit" className="btn btn-sm btn-success">Add post</a>
+                <Link href="/messages/edit">
+                    <a href="/messages/edit" className="btn btn-sm btn-success">Add post</a>
                 </Link>
             </div>
             <Table striped bordered hover>
