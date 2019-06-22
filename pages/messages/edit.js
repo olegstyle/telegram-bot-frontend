@@ -88,7 +88,11 @@ class BotsPage extends React.Component {
     handleChange ({ target }) {
         let fails = Object.assign({}, this.state.fails);
         delete fails[target.name];
-        this.setState({ form: {...this.state.form, [target.name]: target.value}, fails });
+        let value = target.value;
+        if (target.type) {
+            value = target.files[0];
+        }
+        this.setState({ form: {...this.state.form, [target.name]: value}, fails });
     }
 
     render() {
@@ -138,6 +142,25 @@ class BotsPage extends React.Component {
                             is supported.
                         </FormText>
                     </FormGroup>
+
+                    <FormGroup>
+                        <Label>Image</Label>
+                        <Input
+                            name="photo"
+                            type="file"
+                            className={this.state.fails.hasOwnProperty('photo') ? 'is-invalid' : ''}
+                            onChange={this.handleChange}
+                            disabled={this.state.loading}
+                            required />
+                        <div className="invalid-feedback">
+                            {this.state.fails.photo}
+                        </div>
+                        <img className={this.state.post && this.state.post.photoPath ? 'd-block' : 'd-none'}
+                             style={{maxWidth: '320px', maxHeight: '200px'}}
+                             src={this.state.post ? (this.state.post.photoPath || '') : ''}
+                             alt={this.state.post ? this.state.post.title : ''} />
+                    </FormGroup>
+
                     <button className="btn btn-success mr-2" type="submit">{this.state.postId ? 'Update' : 'Create'}</button>
                     <button className="btn btn-danger" type="button" onClick={() => Router.push('/messages')}>Cancel</button>
                 </Form>

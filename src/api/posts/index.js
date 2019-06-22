@@ -4,7 +4,6 @@ const castToFormData = (data) => {
     const formData = new FormData();
     for (const key in data) {
         if (data.hasOwnProperty(key) && data[key]) {
-            console.log(key, data[key]);
             formData.append(key, data[key]);
         }
     }

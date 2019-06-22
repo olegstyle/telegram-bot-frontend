@@ -136,6 +136,12 @@ class PostsPage extends React.Component {
                 <tr key={post.id}>
                     <td>{post.title}</td>
                     <td>
+                        <img className={post && post.photoPath ? 'd-block' : 'd-none'}
+                             style={{maxWidth: '200px', maxHeight: '100px'}}
+                             src={post ? (post.photoPath || '') : ''}
+                             alt={post ? post.title : ''} />
+                    </td>
+                    <td>
                         <Link href={{ pathname: '/messages/edit', query: { postId: post.id }}}>
                             <button className="btn btn-sm btn-success m-1">
                                 Edit
@@ -172,7 +178,8 @@ class PostsPage extends React.Component {
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th width="200px">actions</th>
+                    <th width="200px">Image</th>
+                    <th width="200px">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
