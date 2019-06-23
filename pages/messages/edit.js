@@ -150,8 +150,7 @@ class BotsPage extends React.Component {
                             type="file"
                             className={this.state.fails.hasOwnProperty('photo') ? 'is-invalid' : ''}
                             onChange={this.handleChange}
-                            disabled={this.state.loading}
-                            required />
+                            disabled={this.state.loading} />
                         <div className="invalid-feedback">
                             {this.state.fails.photo}
                         </div>
