@@ -25,7 +25,7 @@ class BotsPage extends React.Component {
             form: {
                 title: '',
                 message: '',
-                // photo: null,
+                photo: null,
                 active: 1,
             },
             fails: {},
@@ -89,7 +89,7 @@ class BotsPage extends React.Component {
         let fails = Object.assign({}, this.state.fails);
         delete fails[target.name];
         let value = target.value;
-        if (target.type) {
+        if (target.type === 'file') {
             value = target.files[0];
         }
         this.setState({ form: {...this.state.form, [target.name]: value}, fails });
