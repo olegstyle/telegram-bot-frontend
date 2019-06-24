@@ -6,6 +6,7 @@ import Topbar from '../nav/topbar';
 import Footer from '../nav/footer';
 import Popper from 'popper.js';
 import ConfirmStyles from 'react-confirm-alert/src/react-confirm-alert.css';
+import CronBuilderStyles from 'react-cron-builder/dist/bundle.css';
 
 export default class extends React.Component {
     static async getInitialProps(context) {
@@ -20,6 +21,7 @@ export default class extends React.Component {
                 <title>{this.props.title}</title>
                 <style dangerouslySetInnerHTML={{__html: Styles}}/>
                 <style dangerouslySetInnerHTML={{__html: ConfirmStyles}}/>
+                <style dangerouslySetInnerHTML={{__html: CronBuilderStyles}}/>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
                       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
                       crossOrigin="anonymous"/>
