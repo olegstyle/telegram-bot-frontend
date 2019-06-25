@@ -1,2 +1,11 @@
 @import "global";
+@import "components/variables";
 @import "~adminator/src/assets/styles/index";
+@import "components/cron_builder";
+
+#__next {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
