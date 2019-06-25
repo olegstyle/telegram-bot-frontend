@@ -30,7 +30,7 @@ class Page extends React.Component {
             form: {
                 title: '',
                 expression: '* * * * *',
-                actionId: null,
+                actionId: 0,
                 active: 1,
             },
             fails: {},
@@ -53,7 +53,7 @@ class Page extends React.Component {
                 form: {
                     title: schedule.title,
                     expression: schedule.expression,
-                    actionId: schedule.action ? schedule.action.id : null,
+                    actionId: schedule.action ? schedule.action.id : 0,
                     // active: schedule.active, // temporary always true
                 }
             });
