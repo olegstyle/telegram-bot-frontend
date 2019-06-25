@@ -126,13 +126,16 @@ class Page extends React.Component {
         confirmAlert({
             title: 'Edit schedule plan.',
             customUI: (({onClose}) => {
-                return <div className="react-confirm-alert-body">
-                    <h3>Edit schedule plan.</h3>
+                return <div className="react-confirm-alert-body react-confirm-alert-body-auto-width">
+                    <h3 className="mb-3">Edit schedule plan</h3>
                     <CronBuilder
                         cronExpression={this.state.form.expression}
                         onChange={ (expression) => {this.setState({form: {...this.state.form, expression: expression}}); onClose(); } }
                         showResult={false}
                     />
+                    <div className="text-center">
+                        <button className="btn btn-danger" type="button" onClick={() => onClose()}>Close</button>
+                    </div>
                 </div>
             }),
         });

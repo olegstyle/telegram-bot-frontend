@@ -1,0 +1,94 @@
+.cron-builder {
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+.cron-builder__tab {
+  font-size: 14px;
+  height: auto;
+  background: $blue-color none;
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.cron-builder__tab--active {
+    background: $darker-blue-color none !important;
+  }
+
+  &:not(.cron-builder__tab--active):hover, &:not(cron-builder__tab--active):active {
+    background: $dark-blue-color none !important;
+  }
+}
+
+.cron-builder__row--hours-range {
+  width: auto;
+}
+
+.cron-builder__preset {
+  min-height: auto;
+
+  & > * {
+    margin-left: 0 !important;
+    margin-right: 10px;
+
+    &:nth-last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.cron-builder__link select {
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding: 0.375rem 0.75rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.cron-builder__legend, .cron-builder__row--inline {
+  .cron-builder__tab {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+
+    &:last-child{
+      border-radius: 0 0.25rem 0.25rem 0;
+    }
+  }
+}
+
+.cron-builder__action {
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background: #28a745 none;
+  border-color: #28a745;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
