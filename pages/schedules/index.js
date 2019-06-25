@@ -8,6 +8,7 @@ import { Table, Form, Input } from 'reactstrap';
 import api from '../../src/api';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
+import cronstrue from 'cronstrue';
 
 class SchedulesPage extends React.Component {
     static async getInitialProps(context) {
@@ -73,7 +74,7 @@ class SchedulesPage extends React.Component {
             scheduleRows.push(
                 <tr key={schedule.id}>
                     <td>{schedule.title}</td>
-                    <td>Plan...</td>
+                    <td>{cronstrue.toString(schedule.expression)}</td>
                     <td>
                         <Link href={{ pathname: '/schedules/edit', query: { scheduleId: schedule.id }}}>
                             <button className="btn btn-sm btn-success m-1">
