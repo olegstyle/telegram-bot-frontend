@@ -11,6 +11,10 @@ import {toast} from "react-toastify";
 import CronBuilder from "react-cron-builder";
 import cronstrue from 'cronstrue';
 import {confirmAlert} from "react-confirm-alert";
+import ReactSelect from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 class Page extends React.Component {
     static async getInitialProps(context) {
@@ -24,13 +28,16 @@ class Page extends React.Component {
         this.state = {
             loading: false,
             loadingPosts: false,
+            loadingChats: false,
             scheduleId: props.query.scheduleId || null,
             schedule: null,
             posts: [],
+            botChats: [],
             form: {
                 title: '',
                 expression: '* * * * *',
                 actionId: 0,
+                botChats: [],
                 active: 1,
             },
             fails: {},
@@ -47,6 +54,11 @@ class Page extends React.Component {
         const self = this;
         api.schedules.one(this.state.scheduleId).then(response => {
             const schedule = response.data.data;
+            const botChatIds = [];
+            for (const botChat of schedule.botChats) {
+                botChatIds.push(botChat.id);
+            }
+            console.log(botChatIds);
             self.setState({
                 schedule,
                 loading: false,
@@ -54,6 +66,7 @@ class Page extends React.Component {
                     title: schedule.title,
                     expression: schedule.expression,
                     actionId: schedule.action ? schedule.action.id : 0,
+                    botChats: botChatIds,
                     // active: schedule.active, // temporary always true
                 }
             });
@@ -83,9 +96,26 @@ class Page extends React.Component {
         });
     }
 
+    loadBotChats() {
+        if (this.state.loadingBotChats) {
+            return;
+        }
+
+        this.setState({loadingBotChats: true});
+        const self = this;
+        api.bots.chats.list().then(response => {
+            const botChats = response.data.data;
+            self.setState({botChats, loadingBotChats: false});
+        }).catch(reason => {
+            console.error(reason);
+            self.setState({loadingBotChats: false});
+        });
+    }
+
     componentDidMount() {
         this.loadSchedule();
         this.loadPosts();
+        this.loadBotChats();
     }
 
     handleSubmit(e) {
@@ -141,6 +171,19 @@ class Page extends React.Component {
         });
     }
 
+    onBotChatsChange(selectedOptions) {
+        let fails = Object.assign({}, this.state.fails);
+        delete fails.botChats;
+        const botChats = [];
+        if (selectedOptions) {
+            for (const option of selectedOptions) {
+                botChats.push(option.value);
+            }
+        }
+
+        this.setState({ form: {...this.state.form, botChats}, fails });
+    }
+
     render() {
         const title = (this.state.scheduleId ? 'Change' : 'Create') + ' a schedule';
 
@@ -149,6 +192,16 @@ class Page extends React.Component {
             posts.push(
                 <option key={post.id} value={post.id}>#{post.id} {post.title}</option>
             );
+        }
+
+        const botChatsOptions = [];
+        const botChatsDefault = [];
+        for (const botChat of this.state.botChats) {
+            const option = {value: botChat.id, label: `#${botChat.id} ${botChat.bot.label} → ${botChat.label}`};
+            botChatsOptions.push(option);
+            if (this.state.form.botChats.includes(botChat.id)) {
+                botChatsDefault.push(option);
+            }
         }
 
         return <DashboardLayout title={title}>
@@ -171,6 +224,21 @@ class Page extends React.Component {
                             autoFocus />
                         <div className="invalid-feedback">
                             {this.state.fails.title}
+                        </div>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label>Bot Chats</Label>
+                        <ReactSelect
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            value={botChatsDefault}
+                            isMulti
+                            isLoading={this.state.loadingBotChats}
+                            options={botChatsOptions}
+                            onChange={this.onBotChatsChange.bind(this)} />
+                        <div className={'invalid-feedback ' + (this.state.fails.hasOwnProperty('botChats') ? 'is-invalid' : '')}>
+                            {this.state.fails.botChats}
                         </div>
                     </FormGroup>
 
